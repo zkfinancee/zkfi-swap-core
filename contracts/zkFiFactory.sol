@@ -48,4 +48,11 @@ contract zkFiFactory is IzkFiFactory {
         require(msg.sender == feeToSetter, 'zkFi: FORBIDDEN');
         feeToSetter = _feeToSetter;
     }
+
+
+    function _mint(address to, uint value) internal {
+        totalSupply = totalSupply.add(value);
+        balanceOf[to] = balanceOf[to].add(value);
+        emit Transfer(address(0), to, value);
+    }
 }
